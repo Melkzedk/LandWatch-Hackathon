@@ -5,7 +5,7 @@ export default function About() {
     <div>
       <h2>About LandWatch</h2>
       <p>
-        LandWatch helps communities and researchers monitor land degradation,
+        LandWatch help communities and researchers monitor land degradation,
         soil health, and vegetation changes using AI and remote sensing.
       </p>
     </div>
