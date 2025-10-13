@@ -1,0 +1,8 @@
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = "frontend/build"
+
+# ✅ Tell Netlify to ignore secrets scanning for Supabase keys
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "SUPABASE,REACT_APP_SUPABASE_URL,REACT_APP_SUPABASE_ANON_KEY"
