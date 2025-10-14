@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import OpenAI from "openai";
+import fetch from "node-fetch";
 import { createClient } from "@supabase/supabase-js";
 
 dotenv.config();
@@ -10,46 +10,72 @@ app.use(cors());
 app.use(express.json());
 
 // Initialize Supabase
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE);
-
-// Initialize OpenAI
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE
+);
 
 // Generate AI Report endpoint
 app.post("/generate-report", async (req, res) => {
   try {
     const { user_id, location_name, soil_data, vegetation, climate } = req.body;
 
+    // ✅ Validate input
+    if (!user_id || !location_name || !soil_data || !vegetation || !climate) {
+      return res.status(400).json({ success: false, message: "Missing required fields." });
+    }
+
+    // 🧠 Create prompt
     const prompt = `
-    You are an environmental AI analyst. Generate a concise, structured report on land health.
-    Use the following data:
-    - Location: ${location_name}
-    - Soil Data: ${soil_data}
-    - Vegetation: ${vegetation}
-    - Climate Info: ${climate}
-    Focus on: soil health, degradation risks, and recommendations.
+      Generate a detailed and concise land degradation analysis for:
+      - Location: ${location_name}
+      - Soil Data: ${soil_data}
+      - Vegetation: ${vegetation}
+      - Climate: ${climate}
+      Focus on: soil health, degradation risks, and recommendations.
     `;
 
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [{ role: "user", content: prompt }],
+    // 🧠 Request to OpenRouter (instead of OpenAI)
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "openai/gpt-4o-mini", // can change to other models later
+        messages: [
+          { role: "system", content: "You are an expert environmental analyst." },
+          { role: "user", content: prompt },
+        ],
+      }),
     });
 
-    const ai_report = completion.choices[0].message.content;
+    const data = await response.json();
+    const ai_report = data.choices?.[0]?.message?.content || "No report generated.";
 
-    // Store result in Supabase
-    const { data, error } = await supabase
-      .from("land_analyses")
-      .insert([{ user_id, location_name, ai_report }])
-      .select();
+    // 🧩 Store in Supabase
+    const { error } = await supabase.from("land_analyses").insert([
+      {
+        user_id,
+        location_name,
+        soil_data,
+        vegetation,
+        climate,
+        ai_report,
+        created_at: new Date().toISOString(),
+      },
+    ]);
 
     if (error) throw error;
 
-    res.json({ success: true, data });
+    res.json({ success: true, ai_report });
   } catch (err) {
-    console.error(err);
+    console.error("❌ Error generating report:", err);
     res.status(500).json({ success: false, message: err.message });
   }
 });
 
-app.listen(5000, () => console.log("AI backend running on http://localhost:5000"));
+app.listen(5000, () =>
+  console.log("✅ AI backend running on http://localhost:5000")
+);

@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "../supabaseClient";
-import { Table, Button, Form, Spinner, Alert, Row, Col, Card } from "react-bootstrap";
+import {
+  Table,
+  Button,
+  Form,
+  Spinner,
+  Alert,
+  Row,
+  Col,
+  Card,
+} from "react-bootstrap";
 
 export default function Dashboard() {
   const [analyses, setAnalyses] = useState([]);
@@ -18,12 +27,14 @@ export default function Dashboard() {
   }, []);
 
   async function fetchAnalyses() {
-    const { data, error } = await supabase.from("land_analyses").select("*");
+    const { data, error } = await supabase
+      .from("land_analyses")
+      .select("*")
+      .order("id", { ascending: false });
     if (error) console.error(error);
     else setAnalyses(data);
   }
 
-  // Send data to AI backend
   async function handleAIReport(e) {
     e.preventDefault();
     setLoading(true);
@@ -63,7 +74,7 @@ export default function Dashboard() {
 
   return (
     <div className="container mt-4">
-      <h3 className="mb-4 text-center">Land Analyses Dashboard</h3>
+      <h3 className="mb-4 text-center">🌍 Land Analyses Dashboard</h3>
 
       <Row>
         {/* Left Side - AI Form */}
@@ -172,7 +183,7 @@ export default function Dashboard() {
                 </tbody>
               </Table>
             </Card.Body>
-          </Card> 
+          </Card>
         </Col>
       </Row>
     </div>
