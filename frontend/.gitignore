@@ -27,6 +27,11 @@
 **/superbaseClient.js
 /src/superbaseClient.js
 
+# Ignore environment files
+.env
+/backend/.env
+/frontend/.env
+
 ...existing code...
 
 npm-debug.log*
