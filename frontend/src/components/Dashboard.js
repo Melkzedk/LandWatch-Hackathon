@@ -63,7 +63,7 @@ export default function Dashboard() {
 
   return (
     <div className="container mt-4">
-      <h3 className="mb-4 text-center">Land Analyses Dashboard</h3>
+      <h3 className="mb-4 text-center">Land Analyse Dashboard</h3>
 
       <Row>
         {/* Left Side - AI Form */}
@@ -172,7 +172,7 @@ export default function Dashboard() {
                 </tbody>
               </Table>
             </Card.Body>
-          </Card>
+          </Card> 
         </Col>
       </Row>
     </div>
