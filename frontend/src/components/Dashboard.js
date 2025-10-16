@@ -84,7 +84,7 @@ export default function Dashboard() {
               <h5 className="mb-3 text-success">Generate New AI Report</h5>
               <Form onSubmit={handleAIReport}>
                 <Form.Group className="mb-2">
-                  <Form.Label>Location Name</Form.Label>
+                  <Form.Label>Location Names</Form.Label>
                   <Form.Control
                     type="text"
                     value={locationName}
