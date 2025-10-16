@@ -16,7 +16,7 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  // Form states
+  // Form state
   const [locationName, setLocationName] = useState("");
   const [soilData, setSoilData] = useState("");
   const [vegetation, setVegetation] = useState("");
