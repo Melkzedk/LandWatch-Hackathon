@@ -21,7 +21,7 @@ export default function Signup() {
 
   return (
     <div className="col-md-6 mx-auto">
-      <h3>SignUp</h3>
+      <h3>Signup</h3>
       {message && <Alert variant="info">{message}</Alert>}
       <Form onSubmit={handleSignup}>
         <Form.Group className="mb-3">
