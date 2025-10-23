@@ -32,7 +32,7 @@ export default function Signup() {
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} required />
         </Form.Group>
-        <Button type="submit" variant="primary">Signup</Button>
+        <Button type="submit" variant="primary">Text Signup</Button>
       </Form>
     </div>
   );
