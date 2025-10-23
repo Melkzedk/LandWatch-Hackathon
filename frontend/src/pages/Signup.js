@@ -14,7 +14,7 @@ export default function Signup() {
     const { error } = await supabase.auth.signUp({ email, password });
     if (error) setMessage(error.message);
     else {
-      setMessage('Signup successful! Please verify your email.');
+      setMessage('Signup successful! Please verify your email!!!.');
       setTimeout(() => navigate('/login'), 2000);
     }
   }
