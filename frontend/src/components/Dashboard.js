@@ -158,7 +158,7 @@ export default function Dashboard() {
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Location</th>
+                    <th>Location1</th>
                     <th>AI Report</th>
                     <th>Date</th>
                   </tr>
