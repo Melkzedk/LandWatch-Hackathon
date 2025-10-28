@@ -150,7 +150,7 @@ export default function Dashboard() {
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <h5 className="mb-0 text-primary">AI Reports</h5>
                 <Button onClick={fetchAnalyses} variant="outline-primary" size="sm">
-                  Refresh Button
+                  Refresh
                 </Button>
               </div>
 
