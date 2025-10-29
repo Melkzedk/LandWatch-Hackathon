@@ -149,7 +149,6 @@ export default function Dashboard() {
             <Card.Body>
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <h5 className="mb-0 text-primary">AI Reports</h5>
-                <h2>MANUAL REPORTS</h2>
                 <Button onClick={fetchAnalyses} variant="outline-primary" size="sm">
                   Refresh
                 </Button>
