@@ -176,7 +176,7 @@ export default function Dashboard() {
                   ) : (
                     <tr>
                       <td colSpan="4" className="text-center">
-                        No data available
+                        No data available!
                       </td>
                     </tr>
                   )}
