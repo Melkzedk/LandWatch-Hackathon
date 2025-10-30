@@ -116,7 +116,7 @@ export default function Dashboard() {
                 </Form.Group>
 
                 <Form.Group className="mb-2">
-                  <Form.Label>Climate!</Form.Label>
+                  <Form.Label>Climate</Form.Label>
                   <Form.Control
                     type="text"
                     value={climate}
