@@ -133,7 +133,7 @@ export default function Dashboard() {
                         <Spinner animation="border" size="sm" /> Generating...
                       </>
                     ) : (
-                      "Generate AI Report"
+                      "Generate AI Reports"
                     )}
                   </Button>
                 </div>
