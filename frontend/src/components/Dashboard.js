@@ -130,7 +130,7 @@ export default function Dashboard() {
                   <Button type="submit" variant="success" disabled={loading}>
                     {loading ? (
                       <>
-                        <Spinner animation="border" size="sm" /> Generating...
+                        <Spinner animation="border" size="sm" /> Generating...Please wait
                       </>
                     ) : (
                       "Generate AI Report"
