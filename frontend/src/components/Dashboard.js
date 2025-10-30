@@ -121,7 +121,7 @@ export default function Dashboard() {
                     type="text"
                     value={climate}
                     onChange={(e) => setClimate(e.target.value)}
-                    placeholder="e.g. Semi-arid, 28°C avg"
+                    placeholder="e.g. Semi-arid, arid,28°C avg"
                     required
                   />
                 </Form.Group>
