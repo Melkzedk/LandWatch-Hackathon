@@ -17,7 +17,6 @@ export default function Signup() {
       setMessage('Signup successful! Please verify your email.');
       setTimeout(() => navigate('/login'), 2000);
     }
-    else{ setMessage('Signup successful! Please verify your email.');}
   }
 
   return (
