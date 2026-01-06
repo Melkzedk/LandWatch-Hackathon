@@ -1,4 +1,4 @@
-# LandWatch - Real Estate Platform
+# LandWatch - Real Estates Platform
 
 A MERN stack application for browsing and managing real estate listings enhanced with AI capabilities.
 
